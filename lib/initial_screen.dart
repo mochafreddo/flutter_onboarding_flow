@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_flow_part_one/create_account_screen.dart';
 import 'package:flutter_onboarding_flow_part_one/widgets/create_account_button.dart';
+import 'package:flutter_onboarding_flow_part_one/widgets/onboarding_appbar.dart';
 import 'package:flutter_onboarding_flow_part_one/widgets/social_signup_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class InitialScreen extends StatelessWidget {
+  const InitialScreen({super.key});
+
+  _tapCreateAccountButton(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CreateAccountScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Center(
-          child: FaIcon(
-            FontAwesomeIcons.twitter,
-            color: Colors.blue,
-            size: 35.0,
-          ),
-        ),
-        elevation: 0.0,
-      ),
+      appBar: const OnboardingAppbar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -66,7 +66,10 @@ class SignUpScreen extends StatelessWidget {
                 ],
               ),
               const Gap(10.0),
-              const CreateAccountButton(),
+              GestureDetector(
+                onTap: () => _tapCreateAccountButton(context),
+                child: const CreateAccountButton(),
+              ),
               const Gap(25.0),
               RichText(
                 text: TextSpan(
@@ -84,9 +87,7 @@ class SignUpScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const TextSpan(
-                      text: ', ',
-                    ),
+                    const TextSpan(text: ', '),
                     TextSpan(
                       text: 'Privacy Policy',
                       style: TextStyle(
@@ -94,9 +95,7 @@ class SignUpScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const TextSpan(
-                      text: ', and ',
-                    ),
+                    const TextSpan(text: ', and '),
                     TextSpan(
                       text: 'Cookie Use',
                       style: TextStyle(
@@ -104,9 +103,7 @@ class SignUpScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const TextSpan(
-                      text: '.',
-                    ),
+                    const TextSpan(text: '.'),
                   ],
                 ),
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_flow_part_one/sign_up_screen.dart';
+import 'package:flutter_onboarding_flow_part_one/initial_screen.dart';
 
 void main() {
   // Ensure that widget binding is initialized
@@ -16,23 +16,8 @@ class OnboardingFlowPartOne extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Onboarding Flow Part One",
-      home: const SignUpScreen(),
-      theme: ThemeData(
-        colorScheme: const ColorScheme(
-          background: Colors.white,
-          primary: Colors.blue,
-          secondary: Colors.blue,
-          error: Colors.red,
-          onPrimary: Colors.white,
-          onSecondary: Colors.white,
-          onBackground: Colors.black,
-          onError: Colors.white,
-          brightness: Brightness.light,
-          surface: Colors.white,
-          onSurface: Colors.black,
-        ),
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      home: const InitialScreen(),
+      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
     );
   }
 }
