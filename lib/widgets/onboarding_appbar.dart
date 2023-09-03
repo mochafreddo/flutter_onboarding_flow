@@ -26,14 +26,12 @@ class OnboardingAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : null,
-      leadingWidth: 90,
+      leadingWidth: hasBackButton ? 90 : null,
       title: const FaIcon(
         FontAwesomeIcons.twitter,
         color: Colors.blue,
         size: 35.0,
       ),
-      centerTitle: true,
-      elevation: 0.0,
     );
   }
 

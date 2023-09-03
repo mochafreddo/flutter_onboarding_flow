@@ -17,7 +17,15 @@ class OnboardingFlowPartOne extends StatelessWidget {
     return MaterialApp(
       title: "Onboarding Flow Part One",
       home: const InitialScreen(),
-      theme: ThemeData(scaffoldBackgroundColor: Colors.white),
+      theme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          centerTitle: true,
+        ),
+      ),
     );
   }
 }

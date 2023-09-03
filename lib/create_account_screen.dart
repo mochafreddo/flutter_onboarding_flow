@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_flow_part_one/customize_experience_screen.dart';
 import 'package:flutter_onboarding_flow_part_one/widgets/onboarding_appbar.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
@@ -48,7 +49,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _navigateToCustomizing() {
-    // Navigate to customizing screen
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const CustomizeExperienceScreen(),
+      ),
+    );
   }
 
   void _selectBirthday() async {
@@ -88,14 +93,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Gap(20.0),
-              const Text(
+              Text(
                 'Create your account',
-                style: TextStyle(
-                  fontSize: 35.0,
-                  fontWeight: FontWeight.w900,
-                ),
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               const Gap(30.0),
               TextFormField(

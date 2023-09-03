@@ -5,6 +5,7 @@ import 'package:flutter_onboarding_flow_part_one/widgets/onboarding_appbar.dart'
 import 'package:flutter_onboarding_flow_part_one/widgets/social_signup_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class InitialScreen extends StatelessWidget {
   const InitialScreen({super.key});
@@ -25,17 +26,19 @@ class InitialScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Text(
+              Gap(MediaQuery.of(context).size.height * 0.11),
+              Text(
                 "See what's happening in the world right now.",
-                style: TextStyle(
-                  fontSize: 35.0,
+                style: GoogleFonts.roboto(
+                  textStyle: Theme.of(context).textTheme.headlineLarge,
+                  fontSize: 34.0,
                   fontWeight: FontWeight.w900,
                 ),
                 textAlign: TextAlign.center,
               ),
-              Gap(MediaQuery.of(context).size.height * 0.17),
+              Gap(MediaQuery.of(context).size.height * 0.11),
               const SocialSignupButton(
                 icon: FaIcon(FontAwesomeIcons.google),
                 text: 'Continue with Google',
