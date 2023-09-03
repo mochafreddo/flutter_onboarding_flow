@@ -66,8 +66,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             initialDateTime: DateTime.now(),
             onDateTimeChanged: (DateTime newDateTime) {
               setState(() {
-                String formattedDate =
-                    DateFormat('MMMM d, y').format(newDateTime);
+                formattedDate = DateFormat('MMMM d, y').format(newDateTime);
                 _birthdayController.text = formattedDate;
                 _isBirthdayValid = true;
               });
