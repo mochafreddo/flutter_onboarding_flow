@@ -48,7 +48,6 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                       'Twitter uses this data to personalize your experience. This web browsing history will never be stored with your name, email, or phone number.',
                       style: GoogleFonts.roboto(
                         textStyle: Theme.of(context).textTheme.bodyLarge,
-                        // fontSize: 18.0,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -65,11 +64,72 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
               ),
               const Gap(25.0),
               RichText(
-                text: const TextSpan(
-                  text:
-                      'By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use. Others will be able to find you by email or phone number when provided · Privacy Options',
+                text: TextSpan(
+                  text: 'By signing up, you agree to our ',
+                  style: GoogleFonts.roboto(
+                    textStyle: Theme.of(context).textTheme.labelLarge,
+                    color: Colors.grey.shade500,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Terms',
+                      style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.labelLarge,
+                        color: Colors.blue.shade300,
+                      ),
+                    ),
+                    const TextSpan(text: ', '),
+                    TextSpan(
+                      text: 'Privacy',
+                      style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.labelLarge,
+                        color: Colors.blue.shade300,
+                      ),
+                    ),
+                    const TextSpan(text: ', '),
+                    TextSpan(
+                      text: 'Policy',
+                      style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.labelLarge,
+                        color: Colors.blue.shade300,
+                      ),
+                    ),
+                    const TextSpan(text: ', and '),
+                    TextSpan(
+                      text: 'Cookie Use',
+                      style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.labelLarge,
+                        color: Colors.blue.shade300,
+                      ),
+                    ),
+                    const TextSpan(
+                        text:
+                            '. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy. '),
+                    TextSpan(
+                      text: 'Learn more',
+                      style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.labelLarge,
+                        color: Colors.blue.shade300,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const Expanded(child: Gap(30.0)),
+              FractionallySizedBox(
+                widthFactor: 1.0,
+                child: ElevatedButton(
+                  onPressed: _isSwitched ? () {} : null,
+                  child: Text(
+                    'Next',
+                    style: GoogleFonts.roboto(
+                      textStyle: Theme.of(context).textTheme.labelLarge,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ),
+              const Gap(30.0),
             ],
           ),
         ),
