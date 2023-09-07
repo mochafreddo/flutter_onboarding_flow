@@ -14,9 +14,14 @@ class CustomizeExperienceScreen extends StatefulWidget {
 class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
   bool _isSwitched = false;
 
+  void _clickNext() {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const OnboardingAppbar(),
       body: SafeArea(
         child: Padding(
@@ -115,11 +120,11 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                   ],
                 ),
               ),
-              const Expanded(child: Gap(30.0)),
+              const Expanded(child: Gap(0.0)),
               FractionallySizedBox(
                 widthFactor: 1.0,
                 child: ElevatedButton(
-                  onPressed: _isSwitched ? () {} : null,
+                  onPressed: _isSwitched ? _clickNext : null,
                   child: Text(
                     'Next',
                     style: GoogleFonts.roboto(
