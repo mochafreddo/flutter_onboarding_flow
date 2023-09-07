@@ -44,8 +44,24 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _validateEmail() {
+    final String input = _emailController.text;
+
+    // 이메일 유효성 검사
+    final bool isEmailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(input);
+
+    // 국제 전화번호 유효성 검사
+    final bool isInternationalPhoneValid =
+        RegExp(r"^\+[1-9]{1}[0-9\-]{3,14}$").hasMatch(input);
+
+    // 한국 전화번호 유효성 검사 (하이픈 허용)
+    final bool isKoreanPhoneValid =
+        RegExp(r"^010-?\d{4}-?\d{4}$").hasMatch(input);
+
     setState(() {
-      _isEmailValid = _emailController.text.isNotEmpty;
+      _isEmailValid =
+          isEmailValid || isInternationalPhoneValid || isKoreanPhoneValid;
     });
   }
 
