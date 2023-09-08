@@ -75,6 +75,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
     setState(() {
       showSignUpButton = true;
+      FocusScope.of(context).unfocus();
     });
   }
 
@@ -89,6 +90,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     await showModalBottomSheet(
       context: context,
       builder: (BuildContext builder) {
+        FocusScope.of(context).unfocus();
         return SizedBox(
           height: MediaQuery.of(context).copyWith().size.height / 3,
           child: CupertinoDatePicker(
