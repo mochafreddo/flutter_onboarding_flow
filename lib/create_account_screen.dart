@@ -21,12 +21,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   bool _isNameValid = false;
   bool _isEmailValid = false;
   bool _isBirthdayValid = false;
+  DateTime initialDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
     _nameController.addListener(_validateName);
     _emailController.addListener(_validateEmail);
+    _setTextFieldDate(DateTime.now());
   }
 
   @override
@@ -65,7 +67,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     });
   }
 
-  void _navigateToCustomizing() {
+  void _nextTap() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => const CustomizeExperienceScreen(),
@@ -74,7 +76,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _selectBirthday() async {
-    String formattedDate = DateFormat('MMMM d, y').format(DateTime.now());
+    String formattedDate = DateFormat('MMMM d, y').format(initialDate);
     _birthdayController.text = formattedDate;
     _isBirthdayValid = true;
 
@@ -85,7 +87,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           height: MediaQuery.of(context).copyWith().size.height / 3,
           child: CupertinoDatePicker(
             mode: CupertinoDatePickerMode.date,
-            initialDateTime: DateTime.now(),
+            initialDateTime: initialDate,
+            maximumDate: initialDate,
             onDateTimeChanged: (DateTime newDateTime) {
               setState(() {
                 formattedDate = DateFormat('MMMM d, y').format(newDateTime);
@@ -103,6 +106,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
+  }
+
+  void _setTextFieldDate(DateTime date) {
+    _birthdayController.value =
+        TextEditingValue(text: DateFormat('MMMM d, y').format(date));
   }
 
   @override
@@ -164,6 +172,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   onTap: _selectBirthday,
                   child: AbsorbPointer(
                     child: TextFormField(
+                      enabled: false,
                       controller: _birthdayController,
                       decoration: InputDecoration(
                         labelText: 'Date of birth',
@@ -194,7 +203,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton(
-                      onPressed: _isFormValid ? _navigateToCustomizing : null,
+                      onPressed: _isFormValid ? _nextTap : null,
                       child: const Text('Next'),
                     ),
                   ),

@@ -14,7 +14,7 @@ class CustomizeExperienceScreen extends StatefulWidget {
 class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
   bool _isSwitched = false;
 
-  void _clickNext() {
+  void _nextTap() {
     Navigator.of(context).pop();
   }
 
@@ -124,7 +124,7 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
               FractionallySizedBox(
                 widthFactor: 1.0,
                 child: ElevatedButton(
-                  onPressed: _isSwitched ? _clickNext : null,
+                  onPressed: _isSwitched ? _nextTap : null,
                   child: Text(
                     'Next',
                     style: GoogleFonts.roboto(
