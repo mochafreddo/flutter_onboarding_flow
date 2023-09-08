@@ -29,7 +29,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     super.initState();
     _nameController.addListener(_validateName);
     _emailController.addListener(_validateEmail);
-    _setTextFieldDate(DateTime.now());
   }
 
   @override
@@ -80,9 +79,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   }
 
   void _selectBirthday() async {
-    String formattedDate = DateFormat('MMMM d, y').format(initialDate);
-    _birthdayController.text = formattedDate;
-    _isBirthdayValid = true;
+    if (_birthdayController.text.isEmpty) {
+      setState(() {
+        _setTextFieldDate(initialDate);
+        _isBirthdayValid = true;
+      });
+    }
 
     await showModalBottomSheet(
       context: context,
@@ -95,7 +97,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             maximumDate: initialDate,
             onDateTimeChanged: (DateTime newDateTime) {
               setState(() {
-                formattedDate = DateFormat('MMMM d, y').format(newDateTime);
+                String formattedDate =
+                    DateFormat('MMMM d, y').format(newDateTime);
                 _birthdayController.text = formattedDate;
                 _isBirthdayValid = true;
               });
@@ -176,7 +179,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   onTap: _selectBirthday,
                   child: AbsorbPointer(
                     child: TextFormField(
-                      enabled: false,
                       controller: _birthdayController,
                       decoration: InputDecoration(
                         labelText: 'Date of birth',
