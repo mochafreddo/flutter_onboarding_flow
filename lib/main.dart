@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_flow_part_one/initial_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   // Ensure that widget binding is initialized
@@ -19,6 +20,7 @@ class OnboardingFlowPartOne extends StatelessWidget {
       home: const InitialScreen(),
       theme: ThemeData(
         useMaterial3: true,
+        fontFamily: GoogleFonts.roboto().fontFamily,
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
