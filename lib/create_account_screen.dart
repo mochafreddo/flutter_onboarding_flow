@@ -22,6 +22,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   bool _isEmailValid = false;
   bool _isBirthdayValid = false;
   DateTime initialDate = DateTime.now();
+  bool showSignUpButton = false;
 
   @override
   void initState() {
@@ -73,6 +74,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         builder: (_) => const CustomizeExperienceScreen(),
       ),
     );
+    setState(() {
+      showSignUpButton = true;
+    });
   }
 
   void _selectBirthday() async {
@@ -189,7 +193,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 ),
                 const Gap(15.0),
                 Visibility(
-                  visible: _isBirthdayValid,
+                  visible: _isBirthdayValid && !showSignUpButton,
                   child: Text(
                     'This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.',
                     style: TextStyle(
@@ -198,16 +202,114 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                   ),
                 ),
-                const Gap(30.0),
-                Expanded(
-                  child: Align(
+                const Expanded(
+                  child: Gap(10.0),
+                ),
+                if (!showSignUpButton)
+                  Align(
                     alignment: Alignment.bottomRight,
-                    child: ElevatedButton(
-                      onPressed: _isFormValid ? _nextTap : null,
-                      child: const Text('Next'),
+                    child: GestureDetector(
+                      onTap: _isFormValid ? _nextTap : null,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: _isFormValid
+                              ? Colors.black
+                              : Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 27.0,
+                            vertical: 12.0,
+                          ),
+                          child: Text(
+                            'Next',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  color: _isFormValid
+                                      ? Colors.white
+                                      : Colors.grey.shade500,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                if (showSignUpButton)
+                  Column(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: 'By signing up, you agree to the ',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.grey.shade600,
+                                  ),
+                          children: [
+                            TextSpan(
+                              text: 'Terms of Service',
+                              style: TextStyle(color: Colors.blue.shade300),
+                            ),
+                            const TextSpan(text: ' and '),
+                            TextSpan(
+                              text: 'Privacy Policy',
+                              style: TextStyle(color: Colors.blue.shade300),
+                            ),
+                            const TextSpan(text: ', including '),
+                            TextSpan(
+                              text: 'Cookie Use',
+                              style: TextStyle(color: Colors.blue.shade300),
+                            ),
+                            const TextSpan(
+                                text:
+                                    '. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. '),
+                            TextSpan(
+                              text: 'Learn more',
+                              style: TextStyle(color: Colors.blue.shade300),
+                            ),
+                            const TextSpan(
+                                text:
+                                    '. Others will be able to find you by email or phone number, when provided, unless you choose otherwise '),
+                            TextSpan(
+                              text: 'here',
+                              style: TextStyle(color: Colors.blue.shade300),
+                            ),
+                            const TextSpan(text: '.'),
+                          ],
+                        ),
+                      ),
+                      const Gap(20.0),
+                      FractionallySizedBox(
+                        widthFactor: 1.0,
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade500,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(30.0),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14.0),
+                            child: Text(
+                              'Sign up',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 const Gap(30.0),
               ],
             ),
