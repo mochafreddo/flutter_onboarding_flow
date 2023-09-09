@@ -124,199 +124,205 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: const OnboardingAppbar(hasBackButton: true),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Gap(20.0),
-                Text(
-                  'Create your account',
-                  style: GoogleFonts.roboto(
-                    textStyle: Theme.of(context).textTheme.displaySmall,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w900,
+          child: Column(
+            children: [
+              SingleChildScrollView(
+                child: IntrinsicHeight(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Gap(20.0),
+                        Text(
+                          'Create your account',
+                          style: GoogleFonts.roboto(
+                            textStyle: Theme.of(context).textTheme.displaySmall,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        const Gap(30.0),
+                        TextFormField(
+                          controller: _nameController,
+                          keyboardType: TextInputType.name,
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            hintText: 'Enter your name',
+                            suffixIcon: _isNameValid
+                                ? const Icon(
+                                    Icons.check_circle,
+                                    color: Colors.green,
+                                  )
+                                : null,
+                          ),
+                        ),
+                        const Gap(15.0),
+                        TextFormField(
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                            labelText: 'Phone number or email address',
+                            hintText:
+                                'Enter your phone number or email address',
+                            suffixIcon: _isEmailValid
+                                ? const Icon(
+                                    Icons.check_circle,
+                                    color: Colors.green,
+                                  )
+                                : null,
+                          ),
+                        ),
+                        const Gap(15.0),
+                        GestureDetector(
+                          onTap: _selectBirthday,
+                          child: AbsorbPointer(
+                            child: TextFormField(
+                              controller: _birthdayController,
+                              decoration: InputDecoration(
+                                labelText: 'Date of birth',
+                                hintText: 'Enter your date of birth',
+                                suffixIcon: _isBirthdayValid
+                                    ? const Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green,
+                                      )
+                                    : null,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Gap(15.0),
+                        Visibility(
+                          visible: _isBirthdayValid && !showSignUpButton,
+                          child: Text(
+                            'This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const Gap(30.0),
-                TextFormField(
-                  controller: _nameController,
-                  keyboardType: TextInputType.name,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    hintText: 'Enter your name',
-                    suffixIcon: _isNameValid
-                        ? const Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
-                          )
-                        : null,
-                  ),
-                ),
-                const Gap(15.0),
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    labelText: 'Phone number or email address',
-                    hintText: 'Enter your phone number or email address',
-                    suffixIcon: _isEmailValid
-                        ? const Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
-                          )
-                        : null,
-                  ),
-                ),
-                const Gap(15.0),
-                GestureDetector(
-                  onTap: _selectBirthday,
-                  child: AbsorbPointer(
-                    child: TextFormField(
-                      controller: _birthdayController,
-                      decoration: InputDecoration(
-                        labelText: 'Date of birth',
-                        hintText: 'Enter your date of birth',
-                        suffixIcon: _isBirthdayValid
-                            ? const Icon(
-                                Icons.check_circle,
-                                color: Colors.green,
-                              )
-                            : null,
+              ),
+              const Expanded(child: Gap(0.0)),
+              if (!showSignUpButton)
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: GestureDetector(
+                    onTap: _isFormValid ? _nextTap : null,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color:
+                            _isFormValid ? Colors.black : Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27.0,
+                          vertical: 12.0,
+                        ),
+                        child: Text(
+                          'Next',
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    color: _isFormValid
+                                        ? Colors.white
+                                        : Colors.grey.shade500,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-                const Gap(15.0),
-                Visibility(
-                  visible: _isBirthdayValid && !showSignUpButton,
-                  child: Text(
-                    'This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.',
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 16.0,
+              if (showSignUpButton)
+                Column(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        text: 'By signing up, you agree to the ',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.grey.shade600,
+                            ),
+                        children: [
+                          TextSpan(
+                            text: 'Terms of Service',
+                            style: TextStyle(color: Colors.blue.shade300),
+                          ),
+                          const TextSpan(text: ' and '),
+                          TextSpan(
+                            text: 'Privacy Policy',
+                            style: TextStyle(color: Colors.blue.shade300),
+                          ),
+                          const TextSpan(text: ', including '),
+                          TextSpan(
+                            text: 'Cookie Use',
+                            style: TextStyle(color: Colors.blue.shade300),
+                          ),
+                          const TextSpan(
+                              text:
+                                  '. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. '),
+                          TextSpan(
+                            text: 'Learn more',
+                            style: TextStyle(color: Colors.blue.shade300),
+                          ),
+                          const TextSpan(
+                              text:
+                                  '. Others will be able to find you by email or phone number, when provided, unless you choose otherwise '),
+                          TextSpan(
+                            text: 'here',
+                            style: TextStyle(color: Colors.blue.shade300),
+                          ),
+                          const TextSpan(text: '.'),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                const Expanded(
-                  child: Gap(10.0),
-                ),
-                if (!showSignUpButton)
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: GestureDetector(
-                      onTap: _isFormValid ? _nextTap : null,
+                    const Gap(20.0),
+                    FractionallySizedBox(
+                      widthFactor: 1.0,
                       child: Container(
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: _isFormValid
-                              ? Colors.black
-                              : Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(25.0),
+                          color: Colors.blue.shade500,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(30.0),
+                          ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 27.0,
-                            vertical: 12.0,
-                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 14.0),
                           child: Text(
-                            'Next',
+                            'Sign up',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(
-                                  color: _isFormValid
-                                      ? Colors.white
-                                      : Colors.grey.shade500,
+                                  color: Colors.white,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 17.0,
                                 ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                if (showSignUpButton)
-                  Column(
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          text: 'By signing up, you agree to the ',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.grey.shade600,
-                                  ),
-                          children: [
-                            TextSpan(
-                              text: 'Terms of Service',
-                              style: TextStyle(color: Colors.blue.shade300),
-                            ),
-                            const TextSpan(text: ' and '),
-                            TextSpan(
-                              text: 'Privacy Policy',
-                              style: TextStyle(color: Colors.blue.shade300),
-                            ),
-                            const TextSpan(text: ', including '),
-                            TextSpan(
-                              text: 'Cookie Use',
-                              style: TextStyle(color: Colors.blue.shade300),
-                            ),
-                            const TextSpan(
-                                text:
-                                    '. Twitter may use your contact information, including your email address and phone number for purposes outlined in our Privacy Policy, like keeping your account secure and personalizing our services, including ads. '),
-                            TextSpan(
-                              text: 'Learn more',
-                              style: TextStyle(color: Colors.blue.shade300),
-                            ),
-                            const TextSpan(
-                                text:
-                                    '. Others will be able to find you by email or phone number, when provided, unless you choose otherwise '),
-                            TextSpan(
-                              text: 'here',
-                              style: TextStyle(color: Colors.blue.shade300),
-                            ),
-                            const TextSpan(text: '.'),
-                          ],
-                        ),
-                      ),
-                      const Gap(20.0),
-                      FractionallySizedBox(
-                        widthFactor: 1.0,
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.blue.shade500,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(30.0),
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 14.0),
-                            child: Text(
-                              'Sign up',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17.0,
-                                  ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                const Gap(30.0),
-              ],
-            ),
+                    )
+                  ],
+                ),
+              Gap(isKeyboardVisible ? 15.0 : 30.0),
+            ],
           ),
         ),
       ),
