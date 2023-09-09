@@ -225,7 +225,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   alignment: Alignment.bottomRight,
                   child: GestureDetector(
                     onTap: _isFormValid ? _nextTap : null,
-                    child: Container(
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
                       decoration: BoxDecoration(
                         color:
                             _isFormValid ? Colors.black : Colors.grey.shade300,
@@ -236,15 +237,16 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           horizontal: 27.0,
                           vertical: 12.0,
                         ),
-                        child: Text(
-                          'Next',
+                        child: AnimatedDefaultTextStyle(
+                          duration: const Duration(milliseconds: 300),
                           style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                              Theme.of(context).textTheme.titleMedium!.copyWith(
                                     color: _isFormValid
                                         ? Colors.white
                                         : Colors.grey.shade500,
                                     fontWeight: FontWeight.bold,
                                   ),
+                          child: const Text('Next'),
                         ),
                       ),
                     ),
