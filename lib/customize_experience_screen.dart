@@ -121,15 +121,32 @@ class _CustomizeExperienceScreenState extends State<CustomizeExperienceScreen> {
                 ),
               ),
               const Expanded(child: Gap(0.0)),
-              FractionallySizedBox(
-                widthFactor: 1.0,
-                child: ElevatedButton(
-                  onPressed: _isSwitched ? _nextTap : null,
-                  child: Text(
-                    'Next',
-                    style: GoogleFonts.roboto(
-                      textStyle: Theme.of(context).textTheme.labelLarge,
-                      fontWeight: FontWeight.w900,
+              GestureDetector(
+                onTap: _isSwitched ? _nextTap : null,
+                child: FractionallySizedBox(
+                  widthFactor: 1.0,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: _isSwitched ? Colors.black : Colors.grey.shade300,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(30.0)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 14.0),
+                      child: AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: 300),
+                        style:
+                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  color: _isSwitched
+                                      ? Colors.white
+                                      : Colors.grey.shade500,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17.0,
+                                ),
+                        child: const Text('Next'),
+                      ),
                     ),
                   ),
                 ),
