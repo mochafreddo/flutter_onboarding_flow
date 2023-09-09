@@ -9,13 +9,20 @@ class OnboardingAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.hasBackButton = false,
   });
 
+  void _pressCancel(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    Future.delayed(const Duration(milliseconds: 200), () {
+      Navigator.of(context).pop();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
       leading: hasBackButton
           ? TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => _pressCancel(context),
               child: const Text(
                 'Cancel',
                 style: TextStyle(
