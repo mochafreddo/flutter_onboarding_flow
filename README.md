@@ -11,16 +11,12 @@ This project is a Flutter implementation of the onboarding flow for a mobile app
 ### 2. Create Account Screen
 - A form with fields for "Name", "Email", and "Date Of Birth".
 - Green icons appear next to each input field as the user fills them out.
-- Once all fields are filled, the "Next" button becomes active.
+- Once all fields are filled, the "Next" button becomes active and showcases an animation effect.
 - Navigates to the "Customize Experience" screen upon pressing "Next".
 
 ### 3. Customize Experience Screen
 - Contains a switch input and a "Next" button.
 - The "Next" button becomes active when the switch is enabled.
-
-### 4. Create Account Screen Part Two
-- Retains the data entered by the user in the previous step.
-- Features a "Sign up" button instead of the "Next" button.
 
 ## Implementation Details
 
