@@ -1,4 +1,4 @@
-package com.example.flutter_onboarding_flow_part_one
+package com.example.flutter_onboarding_flow
 
 import io.flutter.embedding.android.FlutterActivity
 

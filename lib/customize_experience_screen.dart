@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_flow_part_one/widgets/onboarding_appbar.dart';
+import 'package:flutter_onboarding_flow/widgets/onboarding_appbar.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 

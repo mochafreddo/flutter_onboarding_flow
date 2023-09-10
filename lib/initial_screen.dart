@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_flow_part_one/create_account_screen.dart';
-import 'package:flutter_onboarding_flow_part_one/widgets/create_account_button.dart';
-import 'package:flutter_onboarding_flow_part_one/widgets/onboarding_appbar.dart';
-import 'package:flutter_onboarding_flow_part_one/widgets/social_signup_button.dart';
+import 'package:flutter_onboarding_flow/create_account_screen.dart';
+import 'package:flutter_onboarding_flow/widgets/create_account_button.dart';
+import 'package:flutter_onboarding_flow/widgets/onboarding_appbar.dart';
+import 'package:flutter_onboarding_flow/widgets/social_signup_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
