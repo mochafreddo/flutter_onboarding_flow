@@ -18,130 +18,123 @@ class InitialScreen extends StatelessWidget {
     );
   }
 
-  void _onScaffoldTap(BuildContext context) {
-    FocusScope.of(context).unfocus();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _onScaffoldTap(context),
-      child: Scaffold(
-        appBar: const OnboardingAppbar(),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Gap(MediaQuery.of(context).size.height * 0.11),
-                Text(
-                  "See what's happening in the world right now.",
-                  style: GoogleFonts.roboto(
-                    textStyle: Theme.of(context).textTheme.headlineLarge,
-                    fontSize: 34.0,
-                    fontWeight: FontWeight.w900,
+    return Scaffold(
+      appBar: const OnboardingAppbar(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Gap(MediaQuery.of(context).size.height * 0.11),
+              Text(
+                "See what's happening in the world right now.",
+                style: GoogleFonts.roboto(
+                  textStyle: Theme.of(context).textTheme.headlineLarge,
+                  fontSize: 34.0,
+                  fontWeight: FontWeight.w900,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Gap(MediaQuery.of(context).size.height * 0.11),
+              const SocialSignupButton(
+                icon: FaIcon(FontAwesomeIcons.google),
+                text: 'Continue with Google',
+              ),
+              const Gap(15.0),
+              const SocialSignupButton(
+                icon: FaIcon(FontAwesomeIcons.apple),
+                text: 'Continue with Apple',
+              ),
+              const Gap(20.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.grey.shade500,
+                      thickness: 0.7,
+                      endIndent: 15.0,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Gap(MediaQuery.of(context).size.height * 0.11),
-                const SocialSignupButton(
-                  icon: FaIcon(FontAwesomeIcons.google),
-                  text: 'Continue with Google',
-                ),
-                const Gap(15.0),
-                const SocialSignupButton(
-                  icon: FaIcon(FontAwesomeIcons.apple),
-                  text: 'Continue with Apple',
-                ),
-                const Gap(20.0),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey.shade500,
-                        thickness: 0.7,
-                        endIndent: 15.0,
+                  const Text('or'),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.grey.shade500,
+                      thickness: 0.7,
+                      indent: 15.0,
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(10.0),
+              GestureDetector(
+                onTap: () => _tapCreateAccountButton(context),
+                child: const CreateAccountButton(),
+              ),
+              const Gap(25.0),
+              RichText(
+                text: TextSpan(
+                  text: 'By signing up, you agree to our ',
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Terms',
+                      style: TextStyle(
+                        color: Colors.blue.shade600,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const Text('or'),
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey.shade500,
-                        thickness: 0.7,
-                        indent: 15.0,
+                    const TextSpan(text: ', '),
+                    TextSpan(
+                      text: 'Privacy Policy',
+                      style: TextStyle(
+                        color: Colors.blue.shade600,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
+                    const TextSpan(text: ', and '),
+                    TextSpan(
+                      text: 'Cookie Use',
+                      style: TextStyle(
+                        color: Colors.blue.shade600,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const TextSpan(text: '.'),
                   ],
                 ),
-                const Gap(10.0),
-                GestureDetector(
-                  onTap: () => _tapCreateAccountButton(context),
-                  child: const CreateAccountButton(),
-                ),
-                const Gap(25.0),
-                RichText(
-                  text: TextSpan(
-                    text: 'By signing up, you agree to our ',
-                    style: TextStyle(
-                      color: Colors.grey.shade600,
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Terms',
-                        style: TextStyle(
-                          color: Colors.blue.shade600,
-                          fontWeight: FontWeight.w400,
-                        ),
+              ),
+              const Gap(70),
+              Row(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: 'Have an account already? ',
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w400,
                       ),
-                      const TextSpan(text: ', '),
-                      TextSpan(
-                        text: 'Privacy Policy',
-                        style: TextStyle(
-                          color: Colors.blue.shade600,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const TextSpan(text: ', and '),
-                      TextSpan(
-                        text: 'Cookie Use',
-                        style: TextStyle(
-                          color: Colors.blue.shade600,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const TextSpan(text: '.'),
-                    ],
-                  ),
-                ),
-                const Gap(70),
-                Row(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        text: 'Have an account already? ',
-                        style: TextStyle(
-                          color: Colors.grey.shade600,
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Log in',
-                            style: TextStyle(
-                              color: Colors.blue.shade600,
-                              fontWeight: FontWeight.w400,
-                            ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'Log in',
+                          style: TextStyle(
+                            color: Colors.blue.shade600,
+                            fontWeight: FontWeight.w400,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
