@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_onboarding_flow/confirmation_code_screen.dart';
 import 'package:flutter_onboarding_flow/customize_experience_screen.dart';
 import 'package:flutter_onboarding_flow/widgets/onboarding_appbar.dart';
 import 'package:gap/gap.dart';
@@ -122,6 +123,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         TextEditingValue(text: DateFormat('MMMM d, y').format(date));
   }
 
+  void _navigateToConfirmationCodeScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const ConfirmationCodeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
@@ -132,7 +141,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         resizeToAvoidBottomInset: true,
         appBar: const OnboardingAppbar(hasBackButton: true),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          padding: const EdgeInsets.symmetric(
+            vertical: 20.0,
+            horizontal: 30.0,
+          ),
           child: Column(
             children: [
               SingleChildScrollView(
@@ -142,7 +154,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Gap(20.0),
                         Text(
                           'Create your account',
                           style: GoogleFonts.roboto(
@@ -219,7 +230,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   ),
                 ),
               ),
-              const Expanded(child: Gap(0.0)),
+              const Expanded(
+                child: Gap(0.0),
+              ),
               if (!showSignUpButton)
                 Align(
                   alignment: Alignment.bottomRight,
@@ -295,35 +308,36 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       ),
                     ),
                     const Gap(20.0),
-                    FractionallySizedBox(
-                      widthFactor: 1.0,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade500,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(30.0),
+                    GestureDetector(
+                      onTap: _navigateToConfirmationCodeScreen,
+                      child: FractionallySizedBox(
+                        widthFactor: 1.0,
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade500,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30.0)),
                           ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 14.0),
-                          child: Text(
-                            'Sign up',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.0,
-                                ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14.0),
+                            child: Text(
+                              'Sign up',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17.0,
+                                  ),
+                            ),
                           ),
                         ),
                       ),
                     )
                   ],
                 ),
-              Gap(isKeyboardVisible ? 15.0 : 30.0),
             ],
           ),
         ),
