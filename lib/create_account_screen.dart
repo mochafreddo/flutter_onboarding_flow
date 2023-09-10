@@ -114,7 +114,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   bool get _isFormValid => _isNameValid && _isEmailValid && _isBirthdayValid;
 
-  void _onScaffoldTap() {
+  void _dismissKeyboard() {
     FocusScope.of(context).unfocus();
   }
 
@@ -133,10 +133,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
-
     return GestureDetector(
-      onTap: _onScaffoldTap,
+      onTap: _dismissKeyboard,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: const OnboardingAppbar(hasBackButton: true),
