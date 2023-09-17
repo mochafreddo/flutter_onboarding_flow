@@ -75,7 +75,6 @@ class InterestsScreenState extends State<InterestsScreen> {
       // 화면을 탭하면 키보드 포커스를 해제합니다.
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        extendBodyBehindAppBar: true,
         appBar: const OnboardingAppbar(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
