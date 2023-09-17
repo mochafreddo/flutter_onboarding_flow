@@ -1,39 +1,22 @@
 # Flutter Onboarding Flow
 
-This project is a Flutter implementation of the onboarding flow for a mobile application, inspired by the Twitter app's onboarding process. It's a part of a 21-day coding challenge, and this repository represents the work done on Day 17.
+A comprehensive Flutter application that demonstrates a multi-step onboarding process. This app guides users through account creation, interest selection, and confirmation code verification.
 
-## Features
+## Features:
+- **Initial Screen**: Welcomes users and provides an option to create an account.
+- **Create Account Screen**: Allows users to input their details and create an account.
+- **Interests Screen**: Lets users select their interests from a list.
+- **Confirmation Code Screen**: Users can verify their account using a confirmation code sent to them.
 
-### 1. Initial Screen
-- The first screen users see upon launching the app.
-- Contains three buttons, including "Create Account" which navigates to the "Create Account" screen.
+## Getting Started:
 
-### 2. Create Account Screen
-- A form with fields for "Name", "Email", and "Date Of Birth".
-- Green icons appear next to each input field as the user fills them out.
-- Once all fields are filled, the "Next" button becomes active and showcases an animation effect.
-- Navigates to the "Customize Experience" screen upon pressing "Next".
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `flutter pub get` to install dependencies.
+4. Run `flutter run` to start the app.
 
-### 3. Customize Experience Screen
-- Contains a switch input and a "Next" button.
-- The "Next" button becomes active when the switch is enabled.
+## Contribution:
+Feel free to contribute to this project. Open an issue or submit a pull request.
 
-## Implementation Details
-
-- The app's entry point is defined in [`main.dart`](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/main.dart).
-- The screens are implemented in separate Dart files:
-  - [Initial Screen](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/initial_screen.dart)
-  - [Create Account Screen](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/create_account_screen.dart)
-  - [Customize Experience Screen](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/customize_experience_screen.dart)
-- Widgets such as the onboarding app bar, create account button, and social signup button are modularized for reusability:
-  - [Onboarding App Bar](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/widgets/onboarding_appbar.dart)
-  - [Create Account Button](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/widgets/create_account_button.dart)
-  - [Social Signup Button](https://github.com/mochafreddo/flutter_onboarding_flow/blob/main/lib/widgets/social_signup_button.dart)
-
-## Getting Started
-
-To run this project:
-1. Clone the repository: `git clone https://github.com/mochafreddo/flutter_onboarding_flow.git`
-2. Navigate to the project directory: `cd flutter_onboarding_flow`
-3. Install dependencies: `flutter pub get`
-4. Run the app: `flutter run`
+## License:
+This project is licensed under the MIT License.
